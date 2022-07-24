@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Számlázási címeim
+{% endblock %}
+
+{% block body %}
+	<h3>Új számlázási cím hozzáadása</h3>
+	<div class="bg-light p-2">
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+	</div>
+	
+	<hr class="mb-2">
+	
+	<h4>Eddigi számlázási címeid:</h4>
+	<table class="table table-hover table-striped">
+	<tr>
+		<th>Azonosító</th>
+		<th>Típus</th>
+		<th>Név</th>
+		<th>Telefon</th>
+		<th>Adószám</th>
+		<th>Ország</th>
+		<th>Város</th>
+		<th>Utca/házszám</th>
+	</tr>
+	{% for addrs in result %}
+		<tr>
+		<td>Id: {{ addrs.id }}</td>
+		{% if addrs.type is same as(true) %}
+		<td>Cég</td>
+		{% else %}
+		<td>Magánszemély</td>
+		{% endif %}
+		<td>{{ addrs.name }}</td>
+		<td>{{ addrs.phone }}</td>
+		<td>{{ addrs.taxnum }}</td>
+		<td>{{ addrs.country }}</td>
+		<td>{{ addrs.city }}</td>
+		<td>{{ addrs.address }}</td>
+		</tr>
+	{% endfor %}
+	</table>
+	
+	{% if success|default(null) %}
+		<script>alert('Hozzáadás sikeres!')</script>
+	{% endif %}
+	
+{% endblock %}

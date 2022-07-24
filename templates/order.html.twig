@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Új megrendelés
+{% endblock %}
+
+{% block body %}
+	<h3>Új megrendelés leadása</h3>
+	<div class="bg-light p-2">
+	<span>Nettó végösszeg: <strong>{{ netto }}Ft</strong><span/><br />
+	<span>Áfa összege (27%): <strong>{{ tax }}Ft</strong><span/><br />
+	<span>Bruttó végösszeg: <strong>{{ brutto }}Ft</strong><span/>
+	</div>
+	{{ form_start(form) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+	
+	{% if success|default(null) %}
+		<script>alert('Megrendelés sikeres!')</script>
+	{% endif %}
+{% endblock %}
